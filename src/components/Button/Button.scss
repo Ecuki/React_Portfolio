@@ -1,0 +1,18 @@
+.button {
+  display: block;
+  color: #121212;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 100;
+  padding: 15px 32px;
+  border-radius: 6px;
+  border: none;
+  transition: all 0.3s ease 0s;
+  &:hover {
+    transform: scaleX(1.05);
+  }
+  &:active {
+    position: relative;
+    top: 1px;
+  }
+}
