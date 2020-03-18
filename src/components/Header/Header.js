@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "../../Login/react-auth0-spa.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -11,6 +12,7 @@ import Logo from "../Logo";
 import "./Header.scss";
 
 function Header() {
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   return (
     <nav className="nav">
       <Link to="/">
@@ -33,6 +35,15 @@ function Header() {
           <FontAwesomeIcon icon={faIdCard} size="lg" />
           about
         </Link>
+
+        {!isAuthenticated ? (
+          <button onClick={() => loginWithRedirect({})}>Log in</button>
+        ) : (
+          <>
+            <button onClick={() => logout()}>Log out</button>
+            <Link to="/profile">Profile</Link>
+          </>
+        )}
       </ul>
     </nav>
   );

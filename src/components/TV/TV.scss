@@ -8,6 +8,7 @@
   align-items: center;
   flex-wrap: wrap;
   opacity: 0.9;
+
   &__frame {
     display: flex;
     justify-content: center;
@@ -18,6 +19,9 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    // @media (max-width: 376px) {
+    //   height: 45vh;
+    // }
   }
   &__screen {
     position: absolute;
@@ -30,6 +34,7 @@
     z-index: -1;
     background-color: #000;
     transition: background-color 1s;
+    border-radius: 10px;
     &-on {
       animation: appear 0.7s linear both;
     }
@@ -69,7 +74,32 @@
       );
       border-color: transparent rgb(155, 1, 1) rgb(153, 4, 4) transparent;
       transform: translateX(692%) translateY(-360%);
+      animation: gleam 0.3s linear infinite;
     }
+  }
+}
+
+@keyframes gleam {
+  0% {
+    background: radial-gradient(
+      circle,
+      rgba(252, 176, 69, 1) 2%,
+      rgba(247, 0, 0, 1) 94%
+    );
+  }
+  50% {
+    background: radial-gradient(
+      circle,
+      rgb(236, 147, 39) 2%,
+      rgba(247, 0, 0, 1) 94%
+    );
+  }
+  100% {
+    background: radial-gradient(
+      circle,
+      rgba(252, 176, 69, 1) 2%,
+      rgba(247, 0, 0, 1) 94%
+    );
   }
 }
 @keyframes appear {
