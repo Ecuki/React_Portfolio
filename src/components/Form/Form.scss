@@ -1,0 +1,41 @@
+.form {
+  min-width: 350px;
+  width: 50%;
+  height: 80vh;
+  display: flex;
+
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 2vh 5vw;
+
+  h1 {
+    padding: 1vh 0;
+    margin-bottom: 2vh;
+    letter-spacing: 2px;
+    box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.52);
+  }
+  input,
+  textarea {
+    background-color: transparent;
+    border: none;
+    font-size: 1.2rem;
+    padding: 10px 10px;
+    margin-top: 10px;
+    color: #000;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.52);
+  }
+  textarea {
+    height: 200px;
+  }
+  .button {
+    display: block;
+    margin: 0 0 auto auto;
+    width: 120px;
+    justify-self: end;
+    background-color: #008cba;
+    color: #fdfdfd;
+    letter-spacing: 2px;
+    margin-top: 3vh;
+  }
+}

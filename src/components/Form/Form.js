@@ -64,11 +64,11 @@ function Form() {
         id="message"
         name="message"
         onChange={e => setMessage(e.target.value)}
-        placeholder="ask me a question or write what do you think about my site"
+        placeholder="ask me a question or write what you want"
         required
         value={message}
       />
-      <input type="submit" value="Submit" className="button" />
+      <input type="submit" value="Send" className="button" />
     </form>
   );
 }

@@ -12,7 +12,7 @@ import Logo from "../Logo";
 import "./Header.scss";
 
 function Header() {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated } = useAuth0();
   return (
     <nav className="nav">
       <Link to="/">
@@ -31,21 +31,30 @@ function Header() {
           <FontAwesomeIcon icon={faEnvelope} size="lg" />
           contact
         </Link>
-        <Link to="/about">
+        <Link to="/how-to">
           <FontAwesomeIcon icon={faIdCard} size="lg" />
-          about
+          how-to
         </Link>
-
-        {!isAuthenticated ? (
-          <button onClick={() => loginWithRedirect({})}>Log in</button>
-        ) : (
-          <>
-            <button onClick={() => logout()}>Log out</button>
-            <Link to="/profile">Profile</Link>
-          </>
-        )}
+        {isAuthenticated && <Link to="/profile">profile</Link>}
+        <Login />
       </ul>
     </nav>
+  );
+}
+
+function Login() {
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const props = !isAuthenticated
+    ? {
+        class: "button login",
+        onClick: () => loginWithRedirect({}),
+        text: "Log in"
+      }
+    : { class: "button logout", onClick: () => logout(), text: "Log out" };
+  return (
+    <button className={props.class} onClick={props.onClick}>
+      {props.text}
+    </button>
   );
 }
 
