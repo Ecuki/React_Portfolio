@@ -1,4 +1,5 @@
-import React, { useState, useReducer, useContext } from "react";
+import React, { useReducer, useContext } from "react";
+import { useAuth0 } from "../../Login/react-auth0-spa";
 import "./HowTo.scss";
 const howTos = [
   {
@@ -74,8 +75,22 @@ function appReducer(state, action) {
       };
     case "add":
       return {};
-    case "remove":
-      return {};
+    case "delete":
+      return {
+        ...state,
+        items: state.items.filter(item => item.id !== action.payload)
+      };
+    case "edit":
+      return {
+        ...state,
+        isEdited: true,
+        active: action.payload
+      };
+    case "exit":
+      return {
+        ...state,
+        isEdited: false
+      };
     case "search":
       return {
         ...state,
@@ -90,23 +105,24 @@ function HowTo() {
   const [state, dispatch] = useReducer(appReducer, {
     active: 1,
     items: howTos,
-    search: ""
+    search: "",
+    isEdited: false
   });
-
+  const { isAuthenticated } = useAuth0();
+  const { items, search, active, isEdited } = state;
+  const getSerchItems = () =>
+    items.filter(item => item.description.includes(search));
+  const getActiveItem = () => items.filter(item => item.id === active)[0];
   return (
-    <Context.Provider value={dispatch}>
+    <Context.Provider
+      value={{ dispatch: dispatch, isAuthenticated: isAuthenticated }}
+    >
       <div className="howTo">
         <Search />
-        <HowToList
-          items={state.items.filter(item =>
-            item.description.includes(state.search)
-          )}
-        />
-
-        <HowToDescription
-          {...state.items.filter(item => item.id === state.active)[0]}
-        />
+        <HowToList items={getSerchItems()} />
+        <HowToDescription {...getActiveItem()} />
       </div>
+      {isEdited && <Modal {...getActiveItem()} />}
     </Context.Provider>
   );
 }
@@ -114,11 +130,12 @@ function HowTo() {
 export default HowTo;
 
 function Search() {
-  const dispatch = useContext(Context);
+  const { dispatch } = useContext(Context);
   const handleChange = e => {
     e.preventDefault();
     dispatch({ type: "search", payload: e.currentTarget.value });
   };
+
   return (
     <form>
       <label htmlFor="search">Search for HowTO:</label>
@@ -134,25 +151,43 @@ function Search() {
 }
 
 function HowToList({ items }) {
-  const dispatch = useContext(Context);
   return (
     <ul className="howTo__list">
       {items.map(item => (
-        <li
-          id={item.id}
-          key={item.id}
-          onClick={() => dispatch({ type: "active", payload: item.id })}
-        >
-          {item.description}
-        </li>
+        <HowToItem key={item.id} {...item} />
       ))}
     </ul>
+  );
+}
+
+function HowToItem({ id, description }) {
+  const { dispatch, isAuthenticated } = useContext(Context);
+  return (
+    <>
+      <li
+        id={id}
+        key={id}
+        onClick={() => dispatch({ type: "active", payload: id })}
+      >
+        {id + " " + description}
+      </li>
+      {/* {isAuthenticated && */}(
+      <button
+        onClick={() => {
+          dispatch({ type: "edit", payload: id });
+        }}
+      >
+        Edit
+      </button>
+      )
+    </>
   );
 }
 function HowToDescription({ text, url }) {
   return (
     <div className="howTo__description">
       {text}
+
       <a
         className="howTo__link"
         href={url}
@@ -161,6 +196,41 @@ function HowToDescription({ text, url }) {
       >
         Learn more
       </a>
+    </div>
+  );
+}
+function Modal({ id = Date.now(), description = "", url = "", text = "" }) {
+  const { dispatch } = useContext(Context);
+  const handleSave = e => {
+    e.preventDefault();
+    console.log(e.currentTarget);
+    dispatch({ type: "save", payload: e.currentTarget.value });
+  };
+  return (
+    <div className="howTo__modal">
+      <span className="exit" onClick={() => dispatch({ type: "exit" })}>
+        +
+      </span>
+      <form onSubmit={e => handleSave(e)}>
+        <label htmlFor="id">Id:</label>
+        <input type="text" name="id" defaultValue={id} disabled />
+        <br />
+        <label htmlFor="description">Description:</label>
+        <input type="text" name="description" defaultValue={description} />
+        <br />
+        <label htmlFor="url">Url:</label>
+        <input type="text" name="url" defaultValue={url} />
+        <br />
+        <label htmlFor="text">Text:</label>
+        <textarea
+          type="text"
+          name="text"
+          defaultValue={text}
+          disabled={false}
+        />
+        <br />
+        <input type="submit" value="Save" />
+      </form>
     </div>
   );
 }
