@@ -10,6 +10,16 @@
   -webkit-box-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.52);
   box-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.52);
   z-index: 1;
+  background-color: #fff;
+  background-image: linear-gradient(
+      90deg,
+      transparent 79px,
+      #abced4 79px,
+      #abced4 81px,
+      transparent 81px
+    ),
+    linear-gradient(#eee 0.1em, transparent 0.1em);
+  background-size: 100% 1.2em;
 
   a {
     & .logo {
@@ -42,7 +52,8 @@
       background-color: transparent;
     }
     .login {
-      border: 3px solid #008cba;
+      background-color: #008cba;
+      color: white;
     }
     .logout {
       border: 3px solid #ba006c;

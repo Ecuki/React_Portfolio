@@ -14,6 +14,7 @@ function TV({ name, git, preview, imgs }) {
 
   const timerID = setTimeout(() => {
     active && setIndex(index < imgs.length - 1 ? index + 1 : 0);
+    console.log("object");
   }, 3500);
   const styles = active
     ? {
