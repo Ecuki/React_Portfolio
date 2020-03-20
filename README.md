@@ -1,6 +1,45 @@
+# Company Incomes App
+
+---
+
+This is my react.js portfolio page.
+
+[App Preview](https://ecuki.github.io/React_Portfolio/)
+
+---
+
+## Features
+
+- React Hooks
+- React Router
+- useReducer, useContext
+- Auth0
+
+.
+![X](https://ecuki.github.io/React_Portfolio/)
+
+.
+![X](https://ecuki.github.io/React_Portfolio/)
+
+#### How-to :
+
+- to gather knowledge
+- to collect tricks
+- to collect links
+- in one place
+- with the ability to search by tags\*
+
+---
+
+## Usage
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### `git clone https://github.com/Ecuki/React_Portfolio`
+
+After you clone this repo to your desktop, go to its root directory and run `npm install` to install its dependencies.
+
+### `npm install`
 
 In the project directory, you can run:
 
@@ -37,32 +76,19 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Dependencies
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- [Auth0 ](https://github.com/auth0)
+- [Node-sass](https://github.com/sass/node-sass)
+- [React Router](https://github.com/ReactTraining/react-router)
+- [React Datepicker](https://reactdatepicker.com/)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
 
-### Code Splitting
+> You can check out the full license [here](X)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Acknowledgments
 
-### Analyzing the Bundle Size
+Inspiration, code snippets, etc.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- [CSS3 Patterns Gallery](https://leaverou.github.io/css3patterns/)
