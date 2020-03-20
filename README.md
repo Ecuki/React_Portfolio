@@ -1,10 +1,10 @@
-# Company Incomes App
+# Portfolio Page
 
 ---
 
 This is my react.js portfolio page.
 
-[App Preview](https://ecuki.github.io/React_Portfolio/)
+[App Preview](https://ecuki.github.io/React_Portfolio)
 
 ---
 
@@ -16,10 +16,10 @@ This is my react.js portfolio page.
 - Auth0
 
 .
-![X](https://ecuki.github.io/React_Portfolio/)
+![X](https://ecuki.github.io/React_Portfolio)
 
 .
-![X](https://ecuki.github.io/React_Portfolio/)
+![X](https://ecuki.github.io/React_Portfolio)
 
 #### How-to :
 
