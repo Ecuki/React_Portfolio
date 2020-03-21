@@ -16,10 +16,10 @@ This is my react.js portfolio page.
 - Auth0
 
 .
-![X](https://ecuki.github.io/React_Portfolio)
+![X](https://github.com/Ecuki/React_Portfolio/blob/master/src/assets/img/git_view/Screenshot_1.jpg)
 
 .
-![X](https://ecuki.github.io/React_Portfolio)
+![X](https://github.com/Ecuki/React_Portfolio/blob/master/src/assets/img/git_view/Screenshot_2.jpg)
 
 #### How-to :
 
