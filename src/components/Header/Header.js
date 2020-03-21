@@ -9,33 +9,35 @@ import {
   faEnvelope
 } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../Logo";
+import Home from "../Home";
 import "./Header.scss";
 
 function Header() {
   const { isAuthenticated } = useAuth0();
+  const PATH = "/React_Portfolio";
   return (
     <nav className="nav">
-      <Link to="/React_Portfolio">
+      <Link to={PATH}>
         <Logo />
       </Link>
       <ul>
-        <Link to="/React_Portfolio">
+        <Link to={PATH}>
           <FontAwesomeIcon icon={faHome} size="lg" />
           home
         </Link>
-        <Link to="/React_Portfolio/projects">
+        <Link to={PATH + "/projects"}>
           <FontAwesomeIcon icon={faFolder} size="lg" />
           projects
         </Link>
-        <Link to="/React_Portfolio/contact">
+        <Link to={PATH + "/contact"}>
           <FontAwesomeIcon icon={faEnvelope} size="lg" />
           contact
         </Link>
-        <Link to="/React_Portfolio/how-to">
+        <Link to={PATH + "/how-to"}>
           <FontAwesomeIcon icon={faIdCard} size="lg" />
           how-to
         </Link>
-        {isAuthenticated && <Link to="/React_Portfolio/profile">profile</Link>}
+        {isAuthenticated && <Link to={PATH + "/profile"}>profile</Link>}
         <Login />
       </ul>
     </nav>

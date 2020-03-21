@@ -14,14 +14,15 @@ const onRedirectCallback = appState => {
       : window.location.pathname
   );
 };
-
+const PATH = "/React_Portfolio";
 ReactDOM.render(
   <Auth0Provider
     domain={config.domain}
     client_id={config.clientId}
-    redirect_uri={window.location.origin}
+    redirect_uri={window.location.origin + PATH}
     onRedirectCallback={onRedirectCallback}
   >
+    {console.log(window.location.pathname)}
     <App />
   </Auth0Provider>,
   document.getElementById("root")
