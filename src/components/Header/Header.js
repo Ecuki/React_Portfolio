@@ -15,27 +15,27 @@ function Header() {
   const { isAuthenticated } = useAuth0();
   return (
     <nav className="nav">
-      <Link to="/">
+      <Link to="/React_Portfolio">
         <Logo />
       </Link>
       <ul>
-        <Link to="/">
+        <Link to="/React_Portfolio">
           <FontAwesomeIcon icon={faHome} size="lg" />
           home
         </Link>
-        <Link to="/projects">
+        <Link to="/React_Portfolio/projects">
           <FontAwesomeIcon icon={faFolder} size="lg" />
           projects
         </Link>
-        <Link to="/contact">
+        <Link to="/React_Portfolio/contact">
           <FontAwesomeIcon icon={faEnvelope} size="lg" />
           contact
         </Link>
-        <Link to="/how-to">
+        <Link to="/React_Portfolio/how-to">
           <FontAwesomeIcon icon={faIdCard} size="lg" />
           how-to
         </Link>
-        {isAuthenticated && <Link to="/profile">profile</Link>}
+        {isAuthenticated && <Link to="/React_Portfolio/profile">profile</Link>}
         <Login />
       </ul>
     </nav>

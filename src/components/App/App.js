@@ -22,12 +22,12 @@ function App() {
       <Router history={history}>
         <Header />
         <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/projects" component={Projects} />>
-          <Route path="/contact" component={Contact} />
-          <Route path="/how-to" component={HowTo} />
-          <PrivateRoute path="/profile" component={Profile} />
-          <Route path="/" render={() => <div>404</div>} />
+          <Route path="/React_Portfolio" exact component={Home} />
+          <Route path="/React_Portfolio/projects" component={Projects} />>
+          <Route path="/React_Portfolio/contact" component={Contact} />
+          <Route path="/React_Portfolio/how-to" component={HowTo} />
+          <PrivateRoute path="/React_Portfolio/profile" component={Profile} />
+          <Route path="/React_Portfolio/" render={() => <div>404</div>} />
         </Switch>
       </Router>
     </div>

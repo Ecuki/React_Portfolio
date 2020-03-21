@@ -4,7 +4,7 @@
 
 This is my react.js portfolio page.
 
-[App Preview](https://ecuki.github.io/React_Portfolio)
+[App Preview](https://ecuki.github.io/React_Portfolio/)
 
 ---
 
