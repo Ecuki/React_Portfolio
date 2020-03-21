@@ -1,6 +1,7 @@
 import React, { useReducer, useContext } from "react";
 import { useAuth0 } from "../../Login/react-auth0-spa";
 import "./HowTo.scss";
+
 const howTos = [
   {
     id: 1,
@@ -132,16 +133,32 @@ function HowTo() {
   const [state, dispatch] = useReducer(appReducer, {
     active: 1,
     items: howTos,
-    search: "",
+    search: [{ value: "" }],
     modal: false,
     isEdited: false
   });
   const { isAuthenticated } = useAuth0();
   const { items, search, active, modal, isEdited } = state;
-  const getSerchItems = () =>
-    items.filter(item =>
-      item.description.toLowerCase().includes(search.toLowerCase())
-    );
+
+  const getSerchItems = () => {
+    let words = [];
+    let filteredItems = [];
+    console.log(search);
+    if (search.length === 0 && search[0] === "") {
+      filteredItems = items;
+    } else {
+      items.map(item =>
+        search.map(s =>
+          item.description.includes(s) && words.indexOf(item) === -1 && s !== ""
+            ? words.push(item)
+            : null
+        )
+      );
+    }
+    filteredItems = words;
+    return filteredItems.length > 0 ? filteredItems : [];
+  };
+
   const getActiveItem = () => items.filter(item => item.id === active)[0];
   const getModalProps = () => (isEdited ? getActiveItem() : {});
   return (
@@ -168,7 +185,9 @@ function Search() {
   const { dispatch } = useContext(Context);
   const handleChange = e => {
     e.preventDefault();
-    dispatch({ type: "search", payload: e.currentTarget.value });
+    let search = e.currentTarget.value.split(" ");
+
+    dispatch({ type: "search", payload: search });
   };
 
   return (
@@ -261,9 +280,14 @@ function Modal({
   const handleSave = e => {
     e.preventDefault();
     const values = {};
-    [...e.currentTarget].map(
-      item => item.name !== "" && (values[item.name] = item.value)
-    );
+    [...e.currentTarget].map(item => {
+      if (item.name !== "") {
+        return (values[item.name] = item.value);
+      } else {
+        return (values[item.name] = item.value);
+      }
+    });
+
     const type = isEdited ? "change" : "save";
     dispatch({ type: type, payload: values });
   };

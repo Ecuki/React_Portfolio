@@ -66,6 +66,9 @@
       line-height: 1.2rem;
       &:nth-of-type(even) {
         background-color: rgba(195, 195, 195, 0.486);
+        &.active {
+          background: #a1c4fd8f;
+        }
       }
       &:hover {
         background-color: rgba(128, 196, 251, 0.664);
