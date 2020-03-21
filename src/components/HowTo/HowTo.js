@@ -133,7 +133,7 @@ function HowTo() {
   const [state, dispatch] = useReducer(appReducer, {
     active: 1,
     items: howTos,
-    search: [{ value: "" }],
+    search: [""],
     modal: false,
     isEdited: false
   });
@@ -142,10 +142,9 @@ function HowTo() {
 
   const getSerchItems = () => {
     let words = [];
-    let filteredItems = [];
-    console.log(search);
-    if (search.length === 0 && search[0] === "") {
-      filteredItems = items;
+
+    if (search.length === 1 && search[0] === "") {
+      words = items;
     } else {
       items.map(item =>
         search.map(s =>
@@ -155,8 +154,8 @@ function HowTo() {
         )
       );
     }
-    filteredItems = words;
-    return filteredItems.length > 0 ? filteredItems : [];
+
+    return words;
   };
 
   const getActiveItem = () => items.filter(item => item.id === active)[0];
