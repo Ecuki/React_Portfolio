@@ -1,5 +1,9 @@
 import React, { useReducer, useContext } from "react";
 import { useAuth0 } from "../../Login/react-auth0-spa";
+
+import Modal from "./Modal";
+import Search from "./Search";
+
 import "./HowTo.scss";
 
 const howTos = [
@@ -109,15 +113,14 @@ function appReducer(state, action) {
     case "change":
       return {
         ...state,
-        items: state.items.map(item => {
-          return (item =
-            item.id === parseInt(action.payload.id)
-              ? {
-                  ...action.payload,
-                  id: parseInt(action.payload.id)
-                }
-              : item);
-        })
+        items: state.items.map(item =>
+          item.id === parseInt(action.payload.id)
+            ? {
+                ...action.payload,
+                id: parseInt(action.payload.id)
+              }
+            : item
+        )
       };
     case "search":
       return {
@@ -128,7 +131,8 @@ function appReducer(state, action) {
       return state;
   }
 }
-const Context = React.createContext();
+export const Context = React.createContext();
+
 function HowTo() {
   const [state, dispatch] = useReducer(appReducer, {
     active: 1,
@@ -140,7 +144,7 @@ function HowTo() {
   const { isAuthenticated } = useAuth0();
   const { items, search, active, modal, isEdited } = state;
 
-  const getSerchItems = () => {
+  const filterBySearch = () => {
     let words = [];
 
     if (search.length === 1 && search[0] === "") {
@@ -159,7 +163,7 @@ function HowTo() {
   };
 
   const getActiveItem = () => items.filter(item => item.id === active)[0];
-  const getModalProps = () => (isEdited ? getActiveItem() : {});
+  const getEditItem = () => (isEdited ? getActiveItem() : {});
   return (
     <Context.Provider
       value={{
@@ -170,39 +174,15 @@ function HowTo() {
     >
       <div className="howTo">
         <Search />
-        <HowToList items={getSerchItems()} />
+        <HowToList items={filterBySearch()} />
         <HowToDescription {...getActiveItem()} />
       </div>
-      {modal && <Modal isEdited={isEdited} {...getModalProps()} />}
+      {modal && <Modal isEdited={isEdited} {...getEditItem()} />}
     </Context.Provider>
   );
 }
 
 export default HowTo;
-
-function Search() {
-  const { dispatch } = useContext(Context);
-  const handleChange = e => {
-    e.preventDefault();
-    let search = e.currentTarget.value.split(" ");
-
-    dispatch({ type: "search", payload: search });
-  };
-
-  return (
-    <form>
-      <label htmlFor="search">How to:</label>
-      <input
-        type="text"
-        id="search"
-        name="q"
-        aria-label="Search for HowTO"
-        onChange={e => handleChange(e)}
-        placeholder="search"
-      />
-    </form>
-  );
-}
 
 function HowToList({ items }) {
   return (
@@ -232,13 +212,13 @@ function HowToDescription({ id, text, url }) {
   const { dispatch, isAuthenticated } = useContext(Context);
   return (
     <div className="howTo__description">
-      {/* {isAuthenticated && */}
       <div className="howTo__description-top">
         <button
           onClick={() => {
             dispatch({ type: "edit", payload: id });
           }}
           className={"button"}
+          // disabled={isAuthenticated}
         >
           Edit
         </button>
@@ -260,85 +240,11 @@ function HowToDescription({ id, text, url }) {
             dispatch({ type: "add" });
           }}
           title="Add new"
+          // disabled={isAuthenticated}
         >
           New
         </button>
       </div>
-    </div>
-  );
-}
-function Modal({
-  id = Date.now(),
-  description = "",
-  url = "",
-  text = "",
-  isEdited
-}) {
-  const { dispatch } = useContext(Context);
-
-  const handleSave = e => {
-    e.preventDefault();
-    const values = {};
-    [...e.currentTarget].map(item => {
-      if (item.name !== "") {
-        return (values[item.name] = item.value);
-      } else {
-        return (values[item.name] = item.value);
-      }
-    });
-
-    const type = isEdited ? "change" : "save";
-    dispatch({ type: type, payload: values });
-  };
-
-  const handleReset = e => {
-    e.preventDefault();
-    const values = [...e.currentTarget];
-    const id = values.findIndex(item => item.name === "id");
-    dispatch({ type: "delete", payload: parseInt(values[id].value) });
-  };
-
-  return (
-    <div className="howTo__modal">
-      <span className="exit" onClick={() => dispatch({ type: "exit" })}>
-        +
-      </span>
-      <form
-        onSubmit={e => handleSave(e)}
-        onReset={e => handleReset(e)}
-        key={id}
-      >
-        <label htmlFor="id">Id:</label>
-        <input type="text" name="id" defaultValue={id} disabled />
-        <br />
-        <label htmlFor="description">Description:</label>
-        <input
-          type="text"
-          name="description"
-          defaultValue={description}
-          required
-        />
-        <br />
-        <label htmlFor="url">Url:</label>
-        <input type="text" name="url" defaultValue={url} required />
-        <br />
-        <label htmlFor="text">Text:</label>
-        <textarea
-          type="text"
-          name="text"
-          defaultValue={text}
-          disabled={false}
-          required
-        />
-        <br />
-        <input type="submit" value="Save" className="button" />
-        <input
-          type="reset"
-          value="Delete"
-          className="button"
-          disabled={!isEdited}
-        />
-      </form>
     </div>
   );
 }

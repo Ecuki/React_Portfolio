@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import { Auth0Provider } from "./Login/react-auth0-spa";
-import config from "./Login/auth_config.json";
+
 import history from "./Login/utils/history";
 
 const onRedirectCallback = appState => {
@@ -17,12 +17,11 @@ const onRedirectCallback = appState => {
 const PATH = "/React_Portfolio";
 ReactDOM.render(
   <Auth0Provider
-    domain={config.domain}
-    client_id={config.clientId}
+    domain={process.env.REACT_APP_DOMAIN}
+    client_id={process.env.REACT_APP_CLIENT_ID}
     redirect_uri={window.location.origin + PATH}
     onRedirectCallback={onRedirectCallback}
   >
-    {console.log(window.location.pathname)}
     <App />
   </Auth0Provider>,
   document.getElementById("root")
