@@ -21,7 +21,7 @@ export default function Modal({
       }
     });
 
-    const type = isEdited ? "change" : "save";
+    const type = isEdited ? "update" : "post";
     dispatch({ type: type, payload: values });
   };
 
@@ -29,7 +29,7 @@ export default function Modal({
     e.preventDefault();
     const values = [...e.currentTarget];
     const id = values.findIndex(item => item.name === "id");
-    dispatch({ type: "delete", payload: parseInt(values[id].value) });
+    dispatch({ type: "delete", payload: values[id].value });
   };
 
   return (

@@ -1,102 +1,60 @@
 import React, { useReducer, useContext } from "react";
 import { useAuth0 } from "../../Login/react-auth0-spa";
-
 import Modal from "./Modal";
 import Search from "./Search";
-
+import axios from "axios";
 import "./HowTo.scss";
+import { useEffect } from "react";
 
-const howTos = [
-  {
-    id: 1,
-    description: "howTo",
-    url: "https://emotion.sh/docs/styled",
-    text:
-      "1To use styles from a styled component but change the element that’s rendered, you can use the as prop."
-  },
-  {
-    id: 2,
-    description: "howfghghgfhTo",
-    url: "https://emotion.sh/docs/styled",
-    text:
-      "2To use styles from a styled component but change the element that’s rendered, you can use the as prop."
-  },
-  {
-    id: 3,
-    description: "howretgrgdfbgbfgdhhTo",
-    url: "https://emotion.sh/docs/styled",
-    text:
-      "3To use styles from a styled component but change the element that’s rendered, you can use the as prop."
-  },
-  {
-    id: 4,
-    description: "hownghjtytrTo",
-    url: "https://emotion.sh/docs/styled",
-    text:
-      "1To use styles from a styled component but change the element that’s rendered, you can use the as prop."
-  },
-  {
-    id: 5,
-    description: "hofdgtrhrbwewTo",
-    url: "https://emotion.sh/docs/styled",
-    text:
-      "2To use styles from a styled component but change the element that’s rendered, you can use the as prop."
-  },
-  {
-    id: 6,
-    description: "howdfsdfsdfvfdnbfhjtTo",
-    url: "https://emotion.sh/docs/styled",
-    text:
-      "3To use styles from a styled component but change the element that’s rendered, you can use the as prop."
-  },
-  {
-    id: 7,
-    description: "hosdfwTo",
-    url: "https://emotion.sh/docs/styled",
-    text:
-      "1To use styles from a styled component but change the element that’s rendered, you can use the as prop."
-  },
-  {
-    id: 8,
-    description: "howfsdfsdfsdfTo",
-    url: "https://emotion.sh/docs/styled",
-    text:
-      "2To use styles from a styled component but change the element that’s rendered, you can use the as prop."
-  },
-  {
-    id: 9,
-    description: "hodfsdwTo",
-    url: "https://emotion.sh/docs/styled",
-    text:
-      "3To use styles from a styled component but change the element that’s rendered, you can use the as prop."
-  }
-];
+// const findPrevElement = (arr, id) => {
+//   const idx = arr.findIndex(item => item.id === id) - 1;
+//   return arr[idx >= 0 ? idx : 1].id;
+// };
 
-const findPrevElement = (arr, id) => {
-  const idx = arr.findIndex(item => item.id === id) - 1;
-  return arr[idx >= 0 ? idx : 1].id;
-};
-
+export const Context = React.createContext();
 function appReducer(state, action) {
   switch (action.type) {
+    case "load":
+      return {
+        ...state,
+        active: action.payload[0] ? action.payload[0]._id : 0,
+        items: action.payload.map(item => {
+          item = {
+            id: item._id,
+            description: item.description,
+            url: item.url,
+            text: item.text
+          };
+          return item;
+        })
+      };
     case "active":
       return {
         ...state,
         active: action.payload
       };
-    case "add":
+    case "new":
       return { ...state, modal: true };
-    case "save":
-      return { ...state, items: [...state.items, action.payload] };
+    case "post": {
+      let { description, url, text } = action.payload;
+      axios
+        .post(`/howtos`, { description, url, text })
+        .then(res => {
+          console.log(res);
+          window.location.reload();
+        })
+        .catch(error => console.log(error));
+      return { ...state };
+    }
     case "delete":
-      return {
-        ...state,
-        items: state.items.filter(item => item.id !== action.payload),
-        active:
-          state.items.length > 1
-            ? findPrevElement(state.items, action.payload)
-            : 0
-      };
+      axios
+        .delete(`/howtos/${action.payload}`)
+        .then(res => {
+          console.log(res);
+          window.location.reload();
+        })
+        .catch(error => console.log(error));
+      return { ...state };
     case "edit":
       return {
         ...state,
@@ -110,18 +68,17 @@ function appReducer(state, action) {
         modal: false,
         isEdited: false
       };
-    case "change":
-      return {
-        ...state,
-        items: state.items.map(item =>
-          item.id === parseInt(action.payload.id)
-            ? {
-                ...action.payload,
-                id: parseInt(action.payload.id)
-              }
-            : item
-        )
-      };
+    case "update": {
+      const { description, url, text } = action.payload;
+      axios
+        .put(`/howtos/${action.payload.id}`, { description, url, text })
+        .then(res => {
+          console.log(res);
+          window.location.reload();
+        })
+        .catch(error => console.log(error));
+      return { ...state };
+    }
     case "search":
       return {
         ...state,
@@ -131,39 +88,49 @@ function appReducer(state, action) {
       return state;
   }
 }
-export const Context = React.createContext();
 
 function HowTo() {
   const [state, dispatch] = useReducer(appReducer, {
-    active: 1,
-    items: howTos,
+    active: 0,
+    items: [],
     search: [""],
     modal: false,
     isEdited: false
   });
   const { isAuthenticated } = useAuth0();
   const { items, search, active, modal, isEdited } = state;
+  const getActiveItem = () => items.filter(item => item.id === active)[0];
+  const getEditItem = () => (isEdited ? getActiveItem() : {});
 
-  const filterBySearch = () => {
+  useEffect(() => {
+    axios
+      .get("/howtos")
+      .then(res => dispatch({ type: "load", payload: res.data }))
+      .catch(error => console.log(error));
+    console.log("object");
+  }, []);
+
+  const searchItems = () => {
     let words = [];
-
     if (search.length === 1 && search[0] === "") {
       words = items;
     } else {
       items.map(item =>
-        search.map(s =>
-          item.description.includes(s) && words.indexOf(item) === -1 && s !== ""
-            ? words.push(item)
-            : null
-        )
+        search.map(s => {
+          const isInclude = item.description
+            .toLowerCase()
+            .includes(s.toLowerCase())
+            ? true
+            : false;
+          const isUnique = words.indexOf(item) === -1 ? true : false;
+          return isInclude && isUnique && s !== "" ? words.push(item) : null;
+        })
       );
     }
 
     return words;
   };
 
-  const getActiveItem = () => items.filter(item => item.id === active)[0];
-  const getEditItem = () => (isEdited ? getActiveItem() : {});
   return (
     <Context.Provider
       value={{
@@ -174,7 +141,7 @@ function HowTo() {
     >
       <div className="howTo">
         <Search />
-        <HowToList items={filterBySearch()} />
+        <HowToList items={searchItems()} />
         <HowToDescription {...getActiveItem()} />
       </div>
       {modal && <Modal isEdited={isEdited} {...getEditItem()} />}
@@ -209,7 +176,7 @@ function HowToItem({ id, description }) {
   );
 }
 function HowToDescription({ id, text, url }) {
-  const { dispatch, isAuthenticated } = useContext(Context);
+  const { dispatch, isAuthenticated, active } = useContext(Context);
   return (
     <div className="howTo__description">
       <div className="howTo__description-top">
@@ -218,7 +185,7 @@ function HowToDescription({ id, text, url }) {
             dispatch({ type: "edit", payload: id });
           }}
           className={"button"}
-          // disabled={isAuthenticated}
+          disabled={!active || !isAuthenticated}
         >
           Edit
         </button>
@@ -237,10 +204,10 @@ function HowToDescription({ id, text, url }) {
           className="button new"
           onClick={e => {
             e.preventDefault();
-            dispatch({ type: "add" });
+            dispatch({ type: "new" });
           }}
           title="Add new"
-          // disabled={isAuthenticated}
+          disabled={!isAuthenticated}
         >
           New
         </button>
