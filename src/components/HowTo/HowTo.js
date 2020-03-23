@@ -107,7 +107,6 @@ function HowTo() {
       .get("/howtos")
       .then(res => dispatch({ type: "load", payload: res.data }))
       .catch(error => console.log(error));
-    console.log("object");
   }, []);
 
   const searchItems = () => {

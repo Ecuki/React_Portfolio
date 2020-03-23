@@ -2,20 +2,26 @@ import React, { useState } from "react";
 import eyeIcon from "../../assets/img/eye.svg";
 import gitIcon from "../../assets/img/github_icon.svg";
 import "./TV.scss";
+import { useEffect } from "react";
 
 function TV({ name, git, preview, imgs }) {
   const [active, setActive] = useState(false);
+  const useActiveEffect = fn => useEffect(fn, [active]);
   const [index, setIndex] = useState("");
   const handleSwitchTV = () => {
     setActive(!active);
     setIndex(0);
-    clearTimeout(timerID);
   };
 
-  const timerID = setTimeout(() => {
-    active && setIndex(index < imgs.length - 1 ? index + 1 : 0);
-    console.log("object");
-  }, 3500);
+  useEffect(() => {
+    if (active) {
+      const interval = setInterval(() => {
+        setIndex(index < imgs.length - 1 ? index + 1 : 0);
+      }, 3500);
+      return () => clearInterval(interval);
+    }
+  }, [active, imgs.length, index]);
+
   const styles = active
     ? {
         backgroundImage: "url(" + imgs[index].src + ")"

@@ -47,7 +47,7 @@
     min-width: 200px;
     height: 80%;
     overflow-y: scroll;
-    overflow-x: hidden;
+    overflow-x: scroll;
 
     .active {
       background: #a1c4fd8f;
@@ -127,8 +127,11 @@
       font-size: 1rem;
       overflow-y: scroll;
       overflow-x: hidden;
-      line-height: 1.2rem;
-      background-color: #fdfdfd;
+      line-height: 1.3rem;
+      background-color: #72707042;
+      -ms-word-break: break-all;
+      word-break: break-all;
+      word-break: break-word;
     }
     &-bottom {
       align-items: center;
