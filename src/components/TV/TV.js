@@ -6,7 +6,6 @@ import { useEffect } from "react";
 
 function TV({ name, git, preview, imgs }) {
   const [active, setActive] = useState(false);
-  const useActiveEffect = fn => useEffect(fn, [active]);
   const [index, setIndex] = useState("");
   const handleSwitchTV = () => {
     setActive(!active);

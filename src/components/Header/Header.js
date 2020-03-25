@@ -25,6 +25,7 @@ function useOutsideAlerter(ref, close) {
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -44,6 +45,19 @@ OutsideAlerter.propTypes = {
 function Header() {
   const { isAuthenticated } = useAuth0();
   const [isHidden, setHidden] = useState(true);
+  const [mobWidth, setWidth] = useState(window.innerWidth < 1024);
+
+  const handleResize = () => {
+    setWidth(window.innerWidth < 1024);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
+
   const PATH = "/React_Portfolio";
   return (
     <div className="header">
@@ -56,20 +70,22 @@ function Header() {
           !isHidden && setHidden(!isHidden);
         }}
       >
-        <OutsideAlerter
-          close={() => {
-            !isHidden && setHidden(!isHidden);
-          }}
-        >
-          <FontAwesomeIcon
-            icon={faBars}
-            size="lg"
-            onClick={() => {
-              setHidden(!isHidden);
+        {mobWidth && (
+          <OutsideAlerter
+            close={() => {
+              !isHidden && setHidden(!isHidden);
             }}
-          />
-        </OutsideAlerter>
-        <ul className={isHidden ? "hidden" : ""}>
+          >
+            <FontAwesomeIcon
+              icon={faBars}
+              size="lg"
+              onClick={() => {
+                mobWidth && setHidden(!isHidden);
+              }}
+            />
+          </OutsideAlerter>
+        )}
+        <ul className={isHidden && mobWidth ? "hidden" : "ul"}>
           <Login />
           <Link to={PATH} hidden={true}>
             <FontAwesomeIcon icon={faHome} size="lg" />

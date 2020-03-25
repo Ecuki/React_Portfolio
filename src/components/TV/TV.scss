@@ -8,11 +8,18 @@
   align-items: center;
   flex-wrap: wrap;
   opacity: 0.9;
+  @media (max-width: 667px) and (orientation: portrait) {
+    display: none;
+  }
+  @media (max-height: 300px) and (orientation: landscape) {
+    display: none;
+  }
 
   &__frame {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    // justify-content: center;
+    // align-items: center;
+    text-align: center;
     height: 44vh;
     width: 65vh;
     background-image: url("/React_Portfolio/img/tv-cut2.png");
@@ -44,7 +51,7 @@
   }
   &__switch {
     position: absolute;
-    width: 4vh;
+    width: 4.2vh;
     height: 4vh;
     background: rgb(148, 34, 34);
     background: radial-gradient(
@@ -58,13 +65,13 @@
     border-color: transparent rgb(155, 1, 1) rgb(153, 4, 4) transparent;
     margin-right: 2px;
     cursor: pointer;
-    transform: translateX(689%) translateY(-360%);
+    transform: translateX(655%) translateY(-360%);
+
     &:hover {
       border-width: 0 2px 3px 0;
       margin-right: 4px;
       background-color: rgb(255, 30, 0);
       border-color: transparent rgb(155, 1, 1) rgb(153, 4, 4) transparent;
-      transform: translateX(692%) translateY(-360%);
     }
     &-active {
       border-width: 0 2px 3px 0;
@@ -76,7 +83,6 @@
         rgba(247, 0, 0, 1) 94%
       );
       border-color: transparent rgb(155, 1, 1) rgb(153, 4, 4) transparent;
-      transform: translateX(692%) translateY(-360%);
       animation: gleam 0.3s linear infinite;
     }
   }

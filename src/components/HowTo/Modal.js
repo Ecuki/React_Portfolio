@@ -65,11 +65,11 @@ export default function Modal({
           required
         />
         <br />
-        <input type="submit" value="Save" className="button" />
+        <input type="submit" value="Save" className="button save" />
         <input
           type="reset"
           value="Delete"
-          className="button"
+          className="button delete"
           disabled={!isEdited}
         />
       </form>

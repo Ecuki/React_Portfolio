@@ -1,6 +1,6 @@
 .howTo {
   width: 99%;
-  height: 80%;
+
   display: flex;
   justify-content: start;
   align-items: flex-start;
@@ -8,19 +8,35 @@
   flex-wrap: wrap;
   box-shadow: 0 0 5px #333;
   letter-spacing: 2px;
+  padding: 17vh 0 10vh 0;
+  @media (orientation: landscape) {
+    padding: 25vh 0 10vh 0;
+  }
+  @media (min-width: 768px) {
+    padding: 17vh 5% 10vh 5%;
+  }
+  @media (min-width: 1024px) {
+    height: 100vh;
+  }
+
   form {
-    width: 40%;
-    height: 10%;
-    min-width: 200px;
+    width: 100%;
+    height: 8vh;
     display: flex;
     justify-content: start;
     align-items: center;
     background-color: #008cba;
     border-radius: 2px solid #008cba;
-    z-index: 1;
     color: white;
     font-weight: 700;
     box-shadow: 3px 4px 2px -2px rgba(51, 51, 51, 0.431);
+    @media (orientation: landscape) {
+      height: 15vh;
+    }
+    @media (min-width: 1024px) {
+      width: 40%;
+      height: 10vh;
+    }
     label {
       padding-left: 20px;
       margin-right: 10px;
@@ -28,27 +44,39 @@
     }
     input {
       width: 50%;
-      min-width: 1%;
-
+      max-width: 200px;
+      letter-spacing: 2px;
       font-size: 1rem;
       padding: 5px 10px;
       background-color: transparent;
       border: none;
       border-bottom: 1px solid;
       color: white;
+      &::placeholder {
+        color: #fdfdfd91;
+      }
       &:focus {
-        border: 1px solid #333;
+        border: 1px solid rgb(7, 21, 68);
       }
     }
   }
   &__list {
     flex-grow: 1;
-    width: 40%;
+    width: 100%;
     min-width: 200px;
-    height: 80%;
+    max-height: 40vh;
     overflow-y: scroll;
     overflow-x: scroll;
+    padding: 20px 0;
+    background-color: #fdfdfd;
+    border: 1px solid #333;
+    @media (min-width: 1024px) {
+      width: 40%;
 
+      height: 60vh;
+      min-height: 60vh;
+      padding: 0;
+    }
     .active {
       background: #a1c4fd8f;
       &:hover {
@@ -57,13 +85,14 @@
     }
     li {
       width: 100%;
-      padding: 5px 5px 5px 20px;
+      padding: 10px 5px 10px 20px;
       display: flex;
       align-self: center;
 
       cursor: pointer;
       font-size: 1rem;
       line-height: 1.2rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.335);
       &:nth-of-type(even) {
         background-color: rgba(195, 195, 195, 0.486);
         &.active {
@@ -77,16 +106,19 @@
   }
   &__description {
     position: relative;
-    height: 100%;
-    width: 60%;
+    max-height: 85vh;
+    width: 100%;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    @media (min-width: 1024px) {
+      width: 60%;
+      height: 80vh;
+    }
     &-top,
     &-bottom {
-      position: absolute;
       background-color: #fdfdfd;
       width: 100%;
       display: flex;
@@ -95,20 +127,24 @@
     &-top {
       top: 0;
       left: 0;
-      height: 10%;
+      height: 8vh;
       justify-content: end;
       align-items: center;
       background-color: #008cba;
-
       box-shadow: 0 4px 2px -2px rgba(51, 51, 51, 0.431);
-      z-index: 1;
-
+      @media (orientation: landscape) {
+        height: 15vh;
+      }
+      @media (min-width: 1024px) {
+        height: 10vh;
+      }
       button {
-        font-size: 1rem;
+        font-size: 1.2rem;
         box-shadow: none;
         transition: 0.15s;
         background-color: transparent;
         padding: 0;
+        font-weight: 600;
         color: white;
         &:hover {
           text-decoration: underline;
@@ -119,44 +155,66 @@
     &-mid {
       display: flex;
       align-items: flex-start;
-      padding: 50px 10%;
+      padding: 20px;
       margin-bottom: 50px;
       width: 100%;
+      overflow-y: scroll;
+      overflow-x: hidden;
       height: 80%;
       text-align: justify;
       font-size: 1rem;
-      overflow-y: scroll;
-      overflow-x: hidden;
+
       line-height: 1.3rem;
-      background-color: #72707042;
+      background-color: #c7c7c742;
       -ms-word-break: break-all;
       word-break: break-all;
       word-break: break-word;
+      border: 1px solid #333;
+      @media (min-width: 768px) {
+        line-height: 1.5rem;
+        font-size: 1.2rem;
+      }
+      @media (min-width: 1024px) {
+        height: 60vh;
+        max-height: 60vh;
+        margin: 0;
+        padding: 20px 5%;
+        border-left: none;
+        line-height: 1.5rem;
+        font-size: 1.2rem;
+      }
     }
     &-bottom {
       align-items: center;
       bottom: 0;
       left: 0;
       height: 10%;
-
+      background-color: transparent;
       box-shadow: 0 -3px 2px -2px rgba(51, 51, 51, 0.253);
+      @media (min-width: 1024px) {
+        margin-top: 10px;
+        box-shadow: none;
+      }
       .new {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 80%;
+
         background-color: #4caf50;
         color: white;
         font-weight: 700;
-        padding: 0px 8px;
+        font-size: 2rem;
+        padding: 10px 20px;
         border-radius: 0;
         box-shadow: 0 0 5px #333;
       }
     }
     a {
-      color: rgba(90, 2, 161, 0.76);
+      color: rgb(161, 2, 87);
+      font-weight: 400;
       transition: 0.15s;
-      margin: 0 auto 0 10px;
+      margin: 0 auto 0 0;
+      font-size: 1.2rem;
       &:hover {
         text-decoration: underline;
       }
@@ -165,54 +223,97 @@
   &__modal {
     position: fixed;
     width: 90%;
-    height: 60%;
+    height: 80%;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     margin: auto;
     display: flex;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     background-color: #fff;
     border: 1px solid #000;
     box-shadow: 0 0 5px #333;
+    border-right: 5px;
     z-index: 99;
+
     form {
-      height: 90%;
-      width: 90%;
-      margin: auto;
+      width: 100%;
+      height: 100%;
       display: flex;
-      flex-wrap: wrap;
-
-      align-items: flex-start;
-      flex-direction: row;
-
+      flex-direction: column;
+      justify-content: space-evenly;
+      padding: 40px 10px 10px 10px;
+      @media (orientation: landscape) {
+        flex-wrap: wrap;
+        flex-direction: row;
+      }
       label {
-        display: block;
-
-        display: flex;
-        flex-grow: 0;
-        width: 20%;
+        font-size: 1.2rem;
+        font-weight: 600;
+        @media (orientation: landscape) {
+          width: 30%;
+        }
       }
       input,
       textarea {
-        width: 70%;
-        padding: 0 20px;
-        height: fit-content;
+        font-size: 1rem;
+        padding: 0 10px;
+        border-radius: 5px;
+        @media (orientation: landscape) {
+          width: 70%;
+        }
+        &:focus {
+          border: 2px solid #333;
+        }
       }
       textarea {
-        height: 40%;
+        height: 30vh;
+        padding: 10px 10px;
+        line-height: 1.1rem;
+        resize: none;
       }
     }
     .exit {
       position: absolute;
       top: 10px;
       right: 20px;
-      font-size: 4vh;
+      font-size: 6vh;
       margin: auto;
       cursor: pointer;
       transform: rotate(45deg);
       user-select: none;
+      transition: 0.3s;
+      &:hover {
+        transform: rotate(-45deg);
+      }
+      @media (orientation: landscape) {
+        top: 0;
+
+        font-size: 8vh;
+      }
+    }
+    .button {
+      padding: 10px 0;
+      margin-top: 10px;
+      font-size: 1.1rem;
+      transition: 0.15s;
+      color: #fdfdfd;
+      font-weight: 600;
+      letter-spacing: 2px;
+      @media (orientation: landscape) {
+        width: 40%;
+      }
+    }
+    .save {
+      background-color: #4caf50;
+      @media (min-width: 1024px) {
+        margin: 20px;
+      }
+    }
+    .delete {
+      background-color: #f44336;
     }
   }
 }

@@ -1,35 +1,114 @@
 .contact-site {
   width: 100%;
-  min-height: 80%;
+  min-height: 80vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 5vh 0;
 
   letter-spacing: 1px;
+
   a:hover {
     text-decoration: underline;
   }
+  @media (orientation: landscape) {
+    padding: 20vh 5%;
+  }
+  @media (min-width: 768px) {
+    padding: 10vh 10%;
+  }
 }
 .contact__section {
-  min-width: 350px;
-  width: 50%;
-  height: 80vh;
-  min-height: 50vh;
-  display: flex;
+  width: 100%;
 
+  min-height: 80vh;
+  display: flex;
+  padding: 20px;
   flex-direction: column;
-  padding: 2vh 6vw;
+
   opacity: 0.9;
+  justify-content: space-evenly;
+  background-color: #17a347;
+  box-shadow: 0 0 5px #333;
+  border-radius: 10px;
 }
 .contact__title {
-  padding: 1vh 0;
-  margin-bottom: 2vh;
+  padding: 20px 0;
+  margin-bottom: 20px;
   box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.52);
+  @media (orientation: landscape) {
+    font-size: 1.4rem;
+  }
+}
+.contact__text,
+.contact__subtitle {
+  padding-bottom: 20px;
+
+  display: flex;
+  align-items: center;
+  color: #fdfdfd;
+  padding: 10px;
+  border-left: 10px solid #fdfdfd;
+  box-shadow: 0 0 5px #333;
+  border-radius: 5px;
+
+  @media (orientation: landscape) {
+    font-size: 1.2rem;
+  }
 }
 .contact__subtitle {
-  padding-bottom: 2vh;
+  margin-bottom: 10px;
 }
 .contact__text {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 10px 0 10px 10px;
+  overflow: hidden;
+  white-space: nowrap;
   font-size: 1.2rem;
-  padding-bottom: 2vh;
+
+  background-color: transparent;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0px;
+    height: 100%;
+    background-color: #fdfdfd;
+    z-index: -1;
+    transition: all 0.4s ease-in-out 0.1s;
+  }
+  &:hover {
+    color: #17a347;
+
+    &::before {
+      width: 100%;
+      left: 0;
+    }
+    .contact_message {
+      opacity: 1;
+    }
+  }
+
+  .contact_message {
+    text-transform: uppercase;
+    padding-right: 50px;
+    color: #17a347;
+    opacity: 0;
+    transition: 0.3s;
+  }
+  .button {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    padding: 5px;
+    background-color: transparent;
+
+    font-size: 0.7rem;
+    letter-spacing: 0;
+    background-color: rgb(245, 207, 39);
+  }
 }
