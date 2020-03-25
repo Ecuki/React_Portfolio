@@ -54,23 +54,19 @@ function ContactElement({ type, link, value, message }) {
   return (
     <div key={type}>
       <h2 className="contact__subtitle">{type}</h2>
-      {link ? (
-        <a className="contact__text" href={link}>
+      <div className="contact__text">
+        {link ? (
+          <a href={link} className="contact__link">
+            {value}
+          </a>
+        ) : (
           <span> {value}</span>
-          <p className="contact_message">{message}</p>{" "}
-          <button onClick={setCopied} className="button">
-            {isCopied ? "Copied 👍" : "Copy! "}
-          </button>
-        </a>
-      ) : (
-        <div className="contact__text">
-          <span> {value}</span>
-          <p className="contact_message">{message}</p>{" "}
-          <button onClick={setCopied} className="button">
-            {isCopied ? "Copied 👍" : "Copy! "}
-          </button>
-        </div>
-      )}
+        )}
+        <p className="contact_message">{message}</p>{" "}
+        <button onClick={setCopied} className="button">
+          {isCopied ? "Copied 👍" : "Copy! "}
+        </button>
+      </div>
     </div>
   );
 }

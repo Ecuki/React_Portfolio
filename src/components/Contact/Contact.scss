@@ -4,33 +4,40 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 5vh 0;
+  margin: 100px 0 0;
 
   letter-spacing: 1px;
 
   a:hover {
     text-decoration: underline;
   }
-  @media (orientation: landscape) {
-    padding: 20vh 5%;
+
+  @media (min-width: 736px) {
+    margin: 150px 0 0;
+    padding: 0 5%;
   }
-  @media (min-width: 768px) {
-    padding: 10vh 10%;
+  @media (min-width: 1024px) {
+    padding: 0 10%;
+  }
+  @media (min-width: 1200px) {
+    padding: 0;
+    justify-content: space-evenly;
   }
 }
 .contact__section {
   width: 100%;
-
   min-height: 80vh;
   display: flex;
-  padding: 20px;
   flex-direction: column;
-
-  opacity: 0.9;
   justify-content: space-evenly;
+  padding: 20px;
+  opacity: 0.9;
   background-color: #17a347;
   box-shadow: 0 0 5px #333;
   border-radius: 10px;
+  @media (min-width: 1200px) {
+    width: 45%;
+  }
 }
 .contact__title {
   text-align: center;
@@ -61,17 +68,31 @@
 }
 .contact__subtitle {
   margin-bottom: 10px;
+  @media (min-width: 1024px) {
+    font-size: 1.5rem;
+  }
 }
+.contact__text,
+.contact_message {
+  font-size: 0.9rem;
+  @media (min-width: 640px) {
+    font-size: 1rem;
+  }
+  @media (min-height: 736px) {
+    font-size: 1.1rem;
+  }
+}
+
 .contact__text {
   position: relative;
   display: flex;
+
+  flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 20px;
-  padding: 10px 0 10px 10px;
-  overflow: hidden;
-  white-space: nowrap;
-  font-size: 1.2rem;
+  padding: 30px 0 30px 10px;
 
+  white-space: nowrap;
   background-color: transparent;
   &::before {
     content: "";
@@ -84,24 +105,35 @@
     z-index: -1;
     transition: all 0.4s ease-in-out 0.1s;
   }
+
   &:hover {
     color: #17a347;
-
+    .contact__link {
+      color: #17a347;
+    }
     &::before {
       width: 100%;
       left: 0;
     }
     .contact_message {
       opacity: 1;
+      @media (min-width: 568px) {
+        display: flex;
+      }
     }
   }
-
+  .contact__link {
+    cursor: pointer;
+    color: #fdfdfd;
+  }
   .contact_message {
+    display: none;
     text-transform: uppercase;
-    padding-right: 50px;
     color: #17a347;
     opacity: 0;
     transition: 0.3s;
+    flex-grow: 1;
+    justify-content: center;
   }
   .button {
     position: absolute;
@@ -113,5 +145,8 @@
     font-size: 0.7rem;
     letter-spacing: 0;
     background-color: rgb(245, 207, 39);
+    @media (min-width: 640px) {
+      font-size: 1rem;
+    }
   }
 }

@@ -49,15 +49,25 @@ const Giphy = () => {
         {asyncGiphy.result && (
           <div className={"gifs__conteiner"}>
             {asyncGiphy.result.data.map(obj => (
-              <video
-                autoPlay
-                loop
-                key={obj.images.preview.mp4}
-                src={obj.images.preview.mp4}
-              />
+              <div
+                key={obj.images.preview_webp.url}
+                className="gif_bgi"
+                style={{
+                  backgroundImage: `url(${obj.images.preview_webp.url})`
+                }}
+              >
+                {" "}
+                <video
+                  autoPlay
+                  loop
+                  title={obj.title}
+                  src={obj.images.preview.mp4}
+                />
+              </div>
             ))}
           </div>
         )}
+
         <img
           className={"gifs__logo"}
           src={window.innerWidth > 600 ? logoBig : logoSmall}

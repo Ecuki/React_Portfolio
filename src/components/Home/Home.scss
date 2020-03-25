@@ -55,6 +55,7 @@
       opacity: 0.9;
       color: #fdfdfd;
       text-shadow: 2px 2px #1d1d1d;
+      visibility: hidden;
     }
     h1 {
       font-size: 3rem;
@@ -89,11 +90,13 @@
     }
     .projects,
     .contact {
+      visibility: hidden;
       color: white;
       font-weight: 700;
       box-shadow: 0px 3px 7px -2px rgb(0, 0, 0);
       text-shadow: 1px 1px #1d1d1d;
       transition: 0.3;
+
       &:hover {
         background-color: rgb(12, 12, 12);
       }

@@ -42,15 +42,17 @@ OutsideAlerter.propTypes = {
 function Header() {
   const { isAuthenticated } = useAuth0();
   const [isShow, setShow] = useState(false);
-  const [mobWidth, setWidth] = useState(window.innerWidth <= 1024);
+  const [mobWidth, setWidth] = useState(window.innerWidth < 1024);
 
   const handleResize = () => {
-    setWidth(window.innerWidth <= 1024);
+    setWidth(window.innerWidth < 1024);
   };
 
   useEffect(() => {
+    window.addEventListener("orientationchange", handleResize);
     window.addEventListener("resize", handleResize);
     return () => {
+      window.removeEventListener("orientationchange", handleResize);
       window.removeEventListener("resize", handleResize);
     };
   });

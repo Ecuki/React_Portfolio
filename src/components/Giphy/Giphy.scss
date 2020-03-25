@@ -1,25 +1,51 @@
 .gifs {
+  position: relative;
   width: 100%;
+  min-height: 90vh;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  padding: 10vh 0;
+  padding: 10vh 0 0 0;
+  opacity: 0.9;
   &__title {
-    font-size: 4rem;
+    font-size: 2rem;
+    text-align: center;
+    padding: 0 10px;
+    @media (min-width: 768px) {
+      font-size: 3rem;
+    }
   }
   &__form {
-    display: flex;
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
+    @media (min-width: 768px) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
     padding: 5vh 0;
     input,
     .button {
       font-size: 2rem;
+      width: 80%;
+      margin-bottom: 40px;
+      @media (min-width: 768px) {
+        width: 50%;
+        max-width: 300px;
+      }
     }
     input {
-      width: 30%;
       padding: 5px 20px;
+      border: none;
+      border-bottom: 2px solid #333;
+      background-color: transparent;
+    }
+    .button {
+      background-color: #2eac5a;
+      color: #fdfdfd;
     }
   }
   &__loading,
@@ -35,5 +61,38 @@
   &__conteiner {
     flex-wrap: wrap;
     justify-content: space-evenly;
+    padding-bottom: 0;
+    @media (min-width: 736px) {
+      width: 50%;
+    }
+    .gif_bgi {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: fit-content;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        z-index: 1;
+      }
+      video {
+        z-index: 2;
+      }
+    }
+  }
+  &__logo {
+    width: 100%;
+    max-width: 640px;
   }
 }
