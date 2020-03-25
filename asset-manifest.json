@@ -1,26 +1,27 @@
 {
   "files": {
-    "main.css": "/React_Portfolio/static/css/main.25958e82.chunk.css",
-    "main.js": "/React_Portfolio/static/js/main.865587f7.chunk.js",
-    "main.js.map": "/React_Portfolio/static/js/main.865587f7.chunk.js.map",
+    "main.css": "/React_Portfolio/static/css/main.6374cae2.chunk.css",
+    "main.js": "/React_Portfolio/static/js/main.221e81fd.chunk.js",
+    "main.js.map": "/React_Portfolio/static/js/main.221e81fd.chunk.js.map",
     "runtime-main.js": "/React_Portfolio/static/js/runtime-main.895e4125.js",
     "runtime-main.js.map": "/React_Portfolio/static/js/runtime-main.895e4125.js.map",
-    "static/js/2.2e42c090.chunk.js": "/React_Portfolio/static/js/2.2e42c090.chunk.js",
-    "static/js/2.2e42c090.chunk.js.map": "/React_Portfolio/static/js/2.2e42c090.chunk.js.map",
+    "static/js/2.0d25a9c6.chunk.js": "/React_Portfolio/static/js/2.0d25a9c6.chunk.js",
+    "static/js/2.0d25a9c6.chunk.js.map": "/React_Portfolio/static/js/2.0d25a9c6.chunk.js.map",
     "index.html": "/React_Portfolio/index.html",
-    "precache-manifest.13ccf712a4d137683b45c66dc83e9d3f.js": "/React_Portfolio/precache-manifest.13ccf712a4d137683b45c66dc83e9d3f.js",
+    "precache-manifest.ae02700c83a3f081e8f2ab1fffdc3a16.js": "/React_Portfolio/precache-manifest.ae02700c83a3f081e8f2ab1fffdc3a16.js",
     "service-worker.js": "/React_Portfolio/service-worker.js",
-    "static/css/main.25958e82.chunk.css.map": "/React_Portfolio/static/css/main.25958e82.chunk.css.map",
-    "static/js/2.2e42c090.chunk.js.LICENSE.txt": "/React_Portfolio/static/js/2.2e42c090.chunk.js.LICENSE.txt",
+    "static/css/main.6374cae2.chunk.css.map": "/React_Portfolio/static/css/main.6374cae2.chunk.css.map",
+    "static/js/2.0d25a9c6.chunk.js.LICENSE.txt": "/React_Portfolio/static/js/2.0d25a9c6.chunk.js.LICENSE.txt",
     "static/media/PoweredBy_200_Horizontal_Light-Backgrounds_With_Logo.gif": "/React_Portfolio/static/media/PoweredBy_200_Horizontal_Light-Backgrounds_With_Logo.d6fbf239.gif",
     "static/media/PoweredBy_640_Horizontal_Light-Backgrounds_With_Logo.gif": "/React_Portfolio/static/media/PoweredBy_640_Horizontal_Light-Backgrounds_With_Logo.cc636247.gif",
     "static/media/eye.svg": "/React_Portfolio/static/media/eye.e70ae992.svg",
-    "static/media/github_icon.svg": "/React_Portfolio/static/media/github_icon.a9f7ad3d.svg"
+    "static/media/github_icon.svg": "/React_Portfolio/static/media/github_icon.a9f7ad3d.svg",
+    "static/media/tv-cut2.png": "/React_Portfolio/static/media/tv-cut2.d8e43799.png"
   },
   "entrypoints": [
     "static/js/runtime-main.895e4125.js",
-    "static/js/2.2e42c090.chunk.js",
-    "static/css/main.25958e82.chunk.css",
-    "static/js/main.865587f7.chunk.js"
+    "static/js/2.0d25a9c6.chunk.js",
+    "static/css/main.6374cae2.chunk.css",
+    "static/js/main.221e81fd.chunk.js"
   ]
 }
