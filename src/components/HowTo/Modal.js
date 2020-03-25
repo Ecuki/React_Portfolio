@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "./HowTo";
+import "./Modal.scss";
 
 export default function Modal({
   id = Date.now(),
@@ -33,7 +34,7 @@ export default function Modal({
   };
 
   return (
-    <div className="howTo__modal">
+    <div className="modal">
       <span className="exit" onClick={() => dispatch({ type: "exit" })}>
         +
       </span>

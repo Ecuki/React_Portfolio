@@ -177,7 +177,7 @@ function HowToItem({ id, description }) {
 function HowToDescription({ id, text, url }) {
   const { dispatch, isAuthenticated, active } = useContext(Context);
   return (
-    <div className="howTo__description">
+    <>
       <div className="howTo__description-top">
         <button
           onClick={() => {
@@ -211,6 +211,6 @@ function HowToDescription({ id, text, url }) {
           New
         </button>
       </div>
-    </div>
+    </>
   );
 }

@@ -17,15 +17,12 @@ import PropTypes from "prop-types";
 function useOutsideAlerter(ref, close) {
   function handleClickOutside(event) {
     if (ref.current && !ref.current.contains(event.target)) {
-      setTimeout(() => {
-        close();
-      }, 10);
+      close();
     }
   }
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -44,11 +41,11 @@ OutsideAlerter.propTypes = {
 
 function Header() {
   const { isAuthenticated } = useAuth0();
-  const [isHidden, setHidden] = useState(true);
-  const [mobWidth, setWidth] = useState(window.innerWidth < 1024);
+  const [isShow, setShow] = useState(false);
+  const [mobWidth, setWidth] = useState(window.innerWidth <= 1024);
 
   const handleResize = () => {
-    setWidth(window.innerWidth < 1024);
+    setWidth(window.innerWidth <= 1024);
   };
 
   useEffect(() => {
@@ -64,53 +61,51 @@ function Header() {
       <Link to={PATH}>
         <Logo />
       </Link>
-      <nav
-        className="nav"
-        onClick={() => {
-          !isHidden && setHidden(!isHidden);
+      <OutsideAlerter
+        close={() => {
+          isShow && mobWidth && setShow(!isShow);
         }}
       >
-        {mobWidth && (
-          <OutsideAlerter
-            close={() => {
-              !isHidden && setHidden(!isHidden);
+        <nav
+          className="nav"
+          onClick={() => {
+            isShow && setShow(!isShow);
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faBars}
+            size="lg"
+            onClick={() => {
+              mobWidth && setShow(!isShow);
             }}
-          >
-            <FontAwesomeIcon
-              icon={faBars}
-              size="lg"
-              onClick={() => {
-                mobWidth && setHidden(!isHidden);
-              }}
-            />
-          </OutsideAlerter>
-        )}
-        <ul className={isHidden && mobWidth ? "hidden" : "ul"}>
-          <Login />
-          <Link to={PATH} hidden={true}>
-            <FontAwesomeIcon icon={faHome} size="lg" />
-            home
-          </Link>
-          <Link to={PATH + "/projects"}>
-            <FontAwesomeIcon icon={faFolder} size="lg" />
-            projects
-          </Link>
-          <Link to={PATH + "/contact"}>
-            <FontAwesomeIcon icon={faEnvelope} size="lg" />
-            contact
-          </Link>
-          <Link to={PATH + "/how-to"}>
-            <FontAwesomeIcon icon={faSearch} size="lg" />
-            how-to
-          </Link>
-          {isAuthenticated && (
-            <Link to={PATH + "/profile"}>
-              <FontAwesomeIcon icon={faUser} size="lg" />
-              profile
+          />
+          <ul className={!isShow && mobWidth ? "hidden" : "ul"}>
+            <Login />
+            <Link to={PATH}>
+              <FontAwesomeIcon icon={faHome} size="lg" />
+              home
             </Link>
-          )}
-        </ul>
-      </nav>
+            <Link to={PATH + "/projects"}>
+              <FontAwesomeIcon icon={faFolder} size="lg" />
+              projects
+            </Link>
+            <Link to={PATH + "/contact"}>
+              <FontAwesomeIcon icon={faEnvelope} size="lg" />
+              contact
+            </Link>
+            <Link to={PATH + "/how-to"}>
+              <FontAwesomeIcon icon={faSearch} size="lg" />
+              how-to
+            </Link>
+            {isAuthenticated && (
+              <Link to={PATH + "/profile"}>
+                <FontAwesomeIcon icon={faUser} size="lg" />
+                profile
+              </Link>
+            )}
+          </ul>
+        </nav>
+      </OutsideAlerter>
     </div>
   );
 }
