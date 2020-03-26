@@ -23,7 +23,7 @@ app.use(function(req, res, next) {
 });
 
 // Configuring the database
-require("dotenv").config({ path: "./.env" });
+// require("dotenv").config({ path: "./.env" });
 
 const mongoose = require("mongoose");
 require("./src/backend/howto.routes.js")(app);

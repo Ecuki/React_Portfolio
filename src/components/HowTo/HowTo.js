@@ -10,7 +10,7 @@ import { useEffect } from "react";
 //   const idx = arr.findIndex(item => item.id === id) - 1;
 //   return arr[idx >= 0 ? idx : 1].id;
 // };
-
+const proxy = `http://localhost:${process.env.REACT_APP_PORT}/howtos`;
 export const Context = React.createContext();
 function appReducer(state, action) {
   switch (action.type) {
@@ -38,7 +38,7 @@ function appReducer(state, action) {
     case "post": {
       let { description, url, text } = action.payload;
       axios
-        .post(`/howtos`, { description, url, text })
+        .post(proxy, { description, url, text })
         .then(res => {
           console.log(res);
           window.location.reload();
@@ -48,7 +48,7 @@ function appReducer(state, action) {
     }
     case "delete":
       axios
-        .delete(`/howtos/${action.payload}`)
+        .delete(proxy + "/" + action.payload)
         .then(res => {
           console.log(res);
           window.location.reload();
@@ -71,7 +71,11 @@ function appReducer(state, action) {
     case "update": {
       const { description, url, text } = action.payload;
       axios
-        .put(`/howtos/${action.payload.id}`, { description, url, text })
+        .put(proxy + "/" + action.payload.id, {
+          description,
+          url,
+          text
+        })
         .then(res => {
           console.log(res);
           window.location.reload();
@@ -104,7 +108,7 @@ function HowTo() {
 
   useEffect(() => {
     axios
-      .get("/howtos")
+      .get(proxy)
       .then(res => dispatch({ type: "load", payload: res.data }))
       .catch(error => console.log(error));
   }, []);
