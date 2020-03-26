@@ -1,7 +1,7 @@
 // get dependencies
 const express = require("express");
 const bodyParser = require("body-parser");
-const path = require("path");
+
 const dotenv = require("dotenv");
 
 dotenv.config();
@@ -32,7 +32,7 @@ mongoose.Promise = global.Promise;
 
 // Connecting to the database
 mongoose
-  .connect(String(process.env.REACT_APP_MONGODB), {
+  .connect(process.env.REACT_APP_MONGODB, {
     useNewUrlParser: true
   })
   .then(() => {
