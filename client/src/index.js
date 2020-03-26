@@ -4,7 +4,6 @@ import "./index.css";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import { Auth0Provider } from "./Login/react-auth0-spa";
-
 import history from "./Login/utils/history";
 
 const onRedirectCallback = appState => {
@@ -22,6 +21,7 @@ ReactDOM.render(
     redirect_uri={window.location.origin + PATH}
     onRedirectCallback={onRedirectCallback}
   >
+    {console.log(process.env.REACT_APP_DOMAIN)}
     <App />
   </Auth0Provider>,
   document.getElementById("root")
