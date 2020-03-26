@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const dotenv = require("dotenv");
-const PORT = process.env.PORT || process.env.REACT_APP_PORT;
+const PORT = process.env.PORT || 3001;
 dotenv.config();
 const app = express();
 
@@ -42,9 +42,6 @@ mongoose
     console.log("Could not connect to the database. Exiting now...", err);
     process.exit();
   });
-
-if (process.env.NODE_ENV === "production") {
-}
 
 app.listen(PORT, () => {
   console.log("Server is listening on port" + PORT);
