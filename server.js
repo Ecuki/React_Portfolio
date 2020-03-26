@@ -48,6 +48,9 @@ mongoose
 //   res.sendFile(path.join(__dirname, "build", "index.html"));
 // });
 
-app.listen(process.env.REACT_APP_PORT, () => {
-  console.log("Server is listening on port" + process.env.REACT_APP_PORT);
+app.listen(process.env.PORT || process.env.REACT_APP_PORT, () => {
+  console.log(
+    "Server is listening on port" + process.env.PORT ||
+      process.env.REACT_APP_PORT
+  );
 });
