@@ -46,7 +46,6 @@ app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-// listen on port 3000
 app.listen(process.env.REACT_APP_PORT, () => {
   console.log("Server is listening on port" + process.env.REACT_APP_PORT);
 });
