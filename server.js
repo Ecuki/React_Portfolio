@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const dotenv = require("dotenv");
-
+const PORT = process.env.PORT || process.env.REACT_APP_PORT;
 dotenv.config();
 const app = express();
 
@@ -43,11 +43,9 @@ mongoose
     process.exit();
   });
 
-// default route
-// app.get("/React_Portfolio", (req, res) => {
-//   res.sendFile(path.join(__dirname, "build", "index.html"));
-// });
-const PORT = process.env.PORT || process.env.REACT_APP_PORT;
+if (process.env.NODE_ENV === "production") {
+}
+
 app.listen(PORT, () => {
   console.log("Server is listening on port" + PORT);
 });
