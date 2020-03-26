@@ -108,6 +108,7 @@ function HowTo() {
   const getEditItem = () => (isEdited ? getActiveItem() : {});
 
   useEffect(() => {
+    console.log(proxy);
     axios
       .get(proxy)
       .then(res => dispatch({ type: "load", payload: res.data }))

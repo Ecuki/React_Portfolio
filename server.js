@@ -1,7 +1,7 @@
 // get dependencies
 const express = require("express");
 const bodyParser = require("body-parser");
-
+const path = require("path");
 const dotenv = require("dotenv");
 
 dotenv.config();
@@ -47,10 +47,7 @@ mongoose
 // app.get("/React_Portfolio", (req, res) => {
 //   res.sendFile(path.join(__dirname, "build", "index.html"));
 // });
-
-app.listen(process.env.PORT || process.env.REACT_APP_PORT, () => {
-  console.log(
-    "Server is listening on port" + process.env.PORT ||
-      process.env.REACT_APP_PORT
-  );
+const PORT = process.env.PORT || process.env.REACT_APP_PORT;
+app.listen(PORT, () => {
+  console.log("Server is listening on port" + PORT);
 });
