@@ -33,7 +33,7 @@
     "react-use-clipboard": "1.0.0"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "concurrently \"nodemon server/server.js\" \"npm run client\"",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "client-install": "npm install --prefix client",
