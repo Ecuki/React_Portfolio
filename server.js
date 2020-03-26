@@ -30,7 +30,7 @@ mongoose.Promise = global.Promise;
 
 // Connecting to the database
 mongoose
-  .connect(process.env.REACT_APP_MONGODB, {
+  .connect(String(process.env.REACT_APP_MONGODB), {
     useNewUrlParser: true
   })
   .then(() => {
