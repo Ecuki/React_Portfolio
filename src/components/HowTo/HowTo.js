@@ -10,8 +10,8 @@ import { useEffect } from "react";
 //   const idx = arr.findIndex(item => item.id === id) - 1;
 //   return arr[idx >= 0 ? idx : 1].id;
 // };
-const proxy = `http://localhost:${process.env.PORT ||
-  process.env.REACT_APP_PORT}/howtos`;
+const port = process.env.PORT || process.env.REACT_APP_PORT;
+const proxy = `http://localhost:${port}/howtos`;
 export const Context = React.createContext();
 function appReducer(state, action) {
   switch (action.type) {
