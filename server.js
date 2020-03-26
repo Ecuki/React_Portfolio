@@ -1,13 +1,14 @@
 // get dependencies
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path");
 
 const app = express();
 
 // parse requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.use(express.static(path.join(__dirname, "build")));
 //Enable CORS for all HTTP methods
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -20,10 +21,10 @@ app.use(function(req, res, next) {
 });
 
 // Configuring the database
-require("dotenv").config({ path: "../../.env" });
+require("dotenv").config({ path: "./.env" });
 
 const mongoose = require("mongoose");
-require("./howto.routes.js")(app);
+require("./src/backend/howto.routes.js")(app);
 
 mongoose.Promise = global.Promise;
 
@@ -41,8 +42,8 @@ mongoose
   });
 
 // default route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to ZeptoBook Product app" });
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 // listen on port 3000
