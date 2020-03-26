@@ -4,7 +4,8 @@
 
 This is my react.js portfolio page.
 
-[App Preview](https://ecuki.github.io/React_Portfolio)
+[GitHub Pages](https://ecuki.github.io/React_Portfolio)
+[Heroku](https://floating-earth-42837.herokuapp.com/React_Portfolio)
 
 ---
 
