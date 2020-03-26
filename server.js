@@ -10,7 +10,7 @@ const app = express();
 // parse requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "build")));
+// app.use(express.static(path.join(__dirname, "build")));
 //Enable CORS for all HTTP methods
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -44,9 +44,9 @@ mongoose
   });
 
 // default route
-app.get("/React_Portfolio", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
+// app.get("/React_Portfolio", (req, res) => {
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
 
 app.listen(process.env.REACT_APP_PORT, () => {
   console.log("Server is listening on port" + process.env.REACT_APP_PORT);
