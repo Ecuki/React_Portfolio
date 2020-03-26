@@ -6,7 +6,14 @@ const dotenv = require("dotenv");
 const PORT = process.env.PORT || 3001;
 dotenv.config();
 const app = express();
-app.use("/", express.static(path.join(__dirname, "/client/build")));
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('client/build'));
+
+  app.get('*', (request, response) => {
+    response.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 // parse requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -22,11 +29,8 @@ app.use(function(req, res, next) {
   next();
 });
 
-// Configuring the database
-// require("dotenv").config({ path: "./.env" });
-
 const mongoose = require("mongoose");
-require("./src/backend/howto.routes.js")(app);
+require("./howto.routes.js")(app);
 
 mongoose.Promise = global.Promise;
 

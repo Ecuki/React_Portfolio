@@ -32,7 +32,8 @@
     "react-use-clipboard": "1.0.0"
   },
   "scripts": {
-    "start": "nodemon server.js ",
+    "start": "react-scripts start",
+    "dev": "concurrently \"npm start\" \"nodemon server/server.js\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
