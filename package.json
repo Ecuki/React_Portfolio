@@ -27,7 +27,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "react-use-clipboard": "1.0.0",
-    "concurrently": "^5.1.0"
+    "concurrently": "^5.1.0",
+    "nodemon": "2.0.2"
   },
   "scripts": {
     "start": "concurrently --kill-others  \"react-scripts start\" \"nodemon server.js\" ",
