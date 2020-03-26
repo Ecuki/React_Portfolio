@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 const PORT = process.env.PORT || 3001;
 dotenv.config();
 const app = express();
-
+app.use("/", express.static(path.join(__dirname, "/client/build")));
 // parse requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
