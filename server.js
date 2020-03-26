@@ -2,7 +2,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+const dotenv = require("dotenv");
 
+dotenv.config();
 const app = express();
 
 // parse requests
@@ -42,7 +44,7 @@ mongoose
   });
 
 // default route
-app.get("/*", (req, res) => {
+app.get("/React_Portfolio", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
