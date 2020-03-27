@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // app.use(express.static(path.join(__dirname, "build")));
 //Enable CORS for all HTTP methods
-app.use(express.static(path.resolve(__dirname, "/client/build")));
+app.use(express.static(path.resolve(__dirname, "./client/build")));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
@@ -41,7 +41,7 @@ mongoose
     process.exit();
   });
 app.get("*", function(request, response) {
-  response.sendFile(path.resolve(__dirname, "/client/build", "index.html"));
+  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 });
 app.listen(PORT, () => {
   console.log("Server is listening on port" + PORT);
