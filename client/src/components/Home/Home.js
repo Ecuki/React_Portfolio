@@ -1,9 +1,9 @@
 import React, { useRef, useEffect } from "react";
-
 import Button from "../Button";
 import "./Home.scss";
 import ship from "../../assets/img/ship.png";
 import { gsap, MotionPathPlugin } from "gsap/all";
+
 const motionPathData =
   "M-399.25379,-340.71797 C-399.25379,-340.71797 386.70813,-284.92113 420.50613,-152.49513 454.28013,-20.09013 -159.91287,-245.09513 -159.91287,-91.90313 -159.91287,61.26087 378.10113,-103.60513 384.90413,21.27287 391.70213,146.13787 122.70503,104.22685 122.70503,104.22685 ";
 
@@ -14,10 +14,8 @@ function Home() {
   const welcome = useRef(null);
 
   useEffect(() => {
-    const el = welcome.current.children;
-    const { title, subtitle, projects, contact, ship } = el;
-    console.log(title);
-    console.log(el);
+    const welcomeSection = welcome.current.children;
+    const { title, subtitle, projects, contact, ship } = welcomeSection;
     gsap.registerPlugin(MotionPathPlugin);
     gsap.set([title, subtitle, projects, contact], { autoAlpha: 0 });
     gsap.set(ship, {
@@ -130,12 +128,7 @@ function Home() {
           text="projects"
           to="/projects"
         />
-        <Button
-          id="contact"
-          className="contact"
-          text="contact"
-          to="/contact"
-        />
+        <Button id="contact" className="contact" text="contact" to="/contact" />
         <img
           className="ship"
           id="ship"

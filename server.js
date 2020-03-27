@@ -1,4 +1,3 @@
-// get dependencies
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
@@ -6,14 +5,11 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 const app = express();
-console.log("Port" + process.env.PORT);
-console.log("React Port" + process.env.REACT_APP_PORT);
 const PORT = 5000;
-// parse requests
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-// app.use(express.static(path.join(__dirname, "build")));
-//Enable CORS for all HTTP methods
+
 app.use(express.static(path.resolve(__dirname, "./client/build")));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");

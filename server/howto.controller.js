@@ -3,7 +3,6 @@ const HowTo = require("./howto.model.js");
 //Create new HowTo
 exports.create = (req, res) => {
   // Request validation
-  console.log(req.body);
   if (!req.body) {
     return res.status(400).send({
       message: "HowTo content can not be empty"
