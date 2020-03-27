@@ -11,7 +11,7 @@ import { useEffect } from "react";
 //   return arr[idx >= 0 ? idx : 1].id;
 // };
 const port = 5000;
-const proxy = `http://localhost:${port}/howtos`;
+const proxy = `/howtos`;
 export const Context = React.createContext();
 function appReducer(state, action) {
   switch (action.type) {
