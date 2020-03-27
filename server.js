@@ -2,11 +2,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
-const dotenv = require("dotenv");
-const PORT = process.env.PORT || 3001;
-dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 const app = express();
-
+const PORT = process.env.PORT || 3001;
 // parse requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
