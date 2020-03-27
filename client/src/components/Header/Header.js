@@ -57,7 +57,7 @@ function Header() {
     };
   });
 
-  const PATH = "/React_Portfolio";
+  const PATH = "/";
   return (
     <div className="header">
       <Link to={PATH}>
@@ -87,20 +87,20 @@ function Header() {
               <FontAwesomeIcon icon={faHome} size="lg" />
               home
             </Link>
-            <Link to={PATH + "/projects"}>
+            <Link to={PATH + "projects"}>
               <FontAwesomeIcon icon={faFolder} size="lg" />
               projects
             </Link>
-            <Link to={PATH + "/contact"}>
+            <Link to={PATH + "contact"}>
               <FontAwesomeIcon icon={faEnvelope} size="lg" />
               contact
             </Link>
-            <Link to={PATH + "/how-to"}>
+            <Link to={PATH + "how-to"}>
               <FontAwesomeIcon icon={faSearch} size="lg" />
               how-to
             </Link>
             {isAuthenticated && (
-              <Link to={PATH + "/profile"}>
+              <Link to={PATH + "profile"}>
                 <FontAwesomeIcon icon={faUser} size="lg" />
                 profile
               </Link>

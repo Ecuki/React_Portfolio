@@ -13,7 +13,7 @@ const onRedirectCallback = appState => {
       : window.location.pathname
   );
 };
-const PATH = "/React_Portfolio";
+const PATH = "";
 ReactDOM.render(
   <Auth0Provider
     domain={process.env.REACT_APP_DOMAIN}
