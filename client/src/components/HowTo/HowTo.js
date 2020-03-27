@@ -11,7 +11,7 @@ import { useEffect } from "react";
 //   return arr[idx >= 0 ? idx : 1].id;
 // };
 const port = 5000;
-const proxy = `https://floating-earth-42837.herokuapp.com/howtos`;
+const proxy = `https://floating-earth-42837.herokuapp.com/React_Portfolio/howtos`;
 export const Context = React.createContext();
 function appReducer(state, action) {
   switch (action.type) {
