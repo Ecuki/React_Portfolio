@@ -6,7 +6,9 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 const app = express();
-const PORT = process.env.PORT || 3001;
+console.log("Port" + process.env.PORT);
+console.log("React Port" + process.env.REACT_APP_PORT);
+const PORT = 5000;
 // parse requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
