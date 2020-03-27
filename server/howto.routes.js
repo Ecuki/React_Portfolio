@@ -2,17 +2,17 @@ module.exports = app => {
   const howtos = require("./howto.controller.js");
 
   // Create a new HowTo
-  app.post("/howtos", howtos.create);
+  app.post("/React_Portfolio/howtos", howtos.create);
 
   // Retrieve all Products
-  app.get("/howtos", howtos.findAll);
+  app.get("/React_Portfolio/howtos", howtos.findAll);
 
   // Retrieve a single HowTo with howtoId
-  app.get("/howtos/:howtoId", howtos.findOne);
+  app.get("/React_Portfolio/howtos/:howtoId", howtos.findOne);
 
   // Update a Note with howtoId
-  app.put("/howtos/:howtoId", howtos.update);
+  app.put("/React_Portfolio/howtos/:howtoId", howtos.update);
 
   // Delete a Note with howtoId
-  app.delete("/howtos/:howtoId", howtos.delete);
+  app.delete("/React_Portfolio/howtos/:howtoId", howtos.delete);
 };
